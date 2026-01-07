@@ -1,7 +1,7 @@
 # CashPilot Project Progress
 
-> **Last Updated**: January 7, 2026  
-> **Overall Completion**: ~20% (4 of 20 issues completed)
+> **Last Updated**: January 8, 2026  
+> **Overall Completion**: ~30% (6 of 20 issues completed)
 
 ---
 
@@ -10,10 +10,10 @@
 | Category | Total | Completed | In Progress | Backlog |
 |----------|-------|-----------|-------------|---------|
 | Setup    | 3     | 3         | 0           | 0       |
-| UI Components | 8 | 1       | 0           | 7       |
+| UI Components | 8 | 3       | 0           | 5       |
 | Backend Services | 5 | 0    | 0           | 5       |
 | Pages    | 4     | 0         | 0           | 4       |
-| **Total** | **20** | **4**   | **0**       | **16**  |
+| **Total** | **20** | **6**   | **0**       | **14**  |
 
 ---
 
@@ -32,6 +32,8 @@
 | Issue | Title | Branch | PR | Status |
 |-------|-------|--------|-----|--------|
 | [#3](../../issues/3) | Create Button Component | `cp-3-button-component` | [#23](../../pull/23) | ✅ Closed |
+| [#4](../../issues/4) | Create Card Component | `cp-4-card-component` | [#24](../../pull/24) | ✅ Closed |
+| [#5](../../issues/5) | Create Form Input Components | `cp-5-form-inputs` | - | ✅ Closed |
 
 **Summary of completed work:**
 - React + Vite + TypeScript project initialized
@@ -49,6 +51,12 @@
 - Button component with 4 variants (primary, secondary, ghost, danger)
 - Button supports 3 sizes (sm, md, lg), loading state, and icon slots
 - 100% test coverage on Button.tsx
+- Card compound component with 5 sub-components (Card, CardHeader, CardTitle, CardContent, CardFooter)
+- Card supports default and glass variants
+- 100% test coverage on Card.tsx
+- Coding standard: Simple function components (no forwardRef unless explicitly needed)
+- Form Input components (Input, Label, Select) with accessible error states and addon support
+- 100% test coverage on Form Inputs
 
 ---
 
