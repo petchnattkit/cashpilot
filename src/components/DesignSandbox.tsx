@@ -179,7 +179,7 @@ const DesignSandbox = () => {
                         {/* Glass Variant */}
                         <div className="relative bg-gradient-to-br from-primary to-neutral-900 rounded-xl p-4">
                             <Card variant="glass">
-                                <CardHeader>
+                                <CardHeader className="border-white/10">
                                     <CardTitle className="text-white">Glass Card</CardTitle>
                                 </CardHeader>
                                 <CardContent>

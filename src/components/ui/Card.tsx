@@ -9,7 +9,7 @@ export type CardFooterProps = React.HTMLAttributes<HTMLDivElement>;
 
 const variantStyles: Record<string, string> = {
     default: 'bg-white rounded-lg shadow-soft border border-neutral-200',
-    glass: 'bg-white/80 backdrop-blur-lg rounded-lg shadow-glass border border-white/20',
+    glass: 'bg-transparent backdrop-blur-lg rounded-lg shadow-glass border border-white/20',
 };
 
 export const Card = ({
@@ -80,7 +80,7 @@ export const CardFooter = ({
 }: CardFooterProps) => {
     return (
         <div
-            className={`p-4 md:p-6 border-t border-neutral-100 bg-neutral-50 ${className}`.trim()}
+            className={`p-4 md:p-6 border-t border-neutral-100 ${className}`.trim()}
             {...props}
         >
             {children}

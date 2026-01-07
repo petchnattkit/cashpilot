@@ -21,7 +21,7 @@ describe('Card', () => {
         it('renders glass variant with correct styles', () => {
             render(<Card variant="glass" data-testid="card">Content</Card>);
             const card = screen.getByTestId('card');
-            expect(card).toHaveClass('bg-white/80');
+            expect(card).toHaveClass('bg-transparent');
             expect(card).toHaveClass('backdrop-blur-lg');
             expect(card).toHaveClass('shadow-glass');
         });
@@ -117,7 +117,6 @@ describe('CardFooter', () => {
         expect(footer).toHaveClass('md:p-6');
         expect(footer).toHaveClass('border-t');
         expect(footer).toHaveClass('border-neutral-100');
-        expect(footer).toHaveClass('bg-neutral-50');
     });
 
     it('supports custom className', () => {
