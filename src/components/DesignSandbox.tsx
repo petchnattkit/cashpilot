@@ -1,4 +1,5 @@
 import { Button } from './ui/Button';
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/Card';
 
 // Simple icon components for demo
 const PlusIcon = () => (
@@ -151,6 +152,48 @@ const DesignSandbox = () => {
                             <Button leftIcon={<PlusIcon />}>Add Item</Button>
                             <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
                             <Button leftIcon={<PlusIcon />} rightIcon={<ArrowRightIcon />}>Both Icons</Button>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="text-2xl font-semibold mb-6 text-primary">Card Component</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Default Variant */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Default Card</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-neutral-600">
+                                    This is the default card variant with a clean white background,
+                                    subtle shadow, and neutral border.
+                                </p>
+                            </CardContent>
+                            <CardFooter>
+                                <Button size="sm">Learn More</Button>
+                            </CardFooter>
+                        </Card>
+
+                        {/* Glass Variant */}
+                        <div className="relative bg-gradient-to-br from-primary to-neutral-900 rounded-xl p-4">
+                            <Card variant="glass">
+                                <CardHeader>
+                                    <CardTitle className="text-white">Glass Card</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-white/80">
+                                        The glass variant features backdrop blur and
+                                        semi-transparent styling.
+                                    </p>
+                                </CardContent>
+                                <CardFooter className="bg-transparent border-white/10">
+                                    <Button variant="secondary" size="sm" className="border-white/50 text-white">
+                                        Action
+                                    </Button>
+                                </CardFooter>
+                            </Card>
                         </div>
                     </div>
                 </section>
