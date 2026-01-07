@@ -32,7 +32,7 @@ const iconSizes: Record<string, string> = {
   lg: 'w-6 h-6',
 };
 
-const Spinner: React.FC<{ className?: string }> = ({ className }) => (
+const Spinner = ({ className }: { className?: string }) => (
   <svg
     className={`animate-spin ${className}`}
     xmlns="http://www.w3.org/2000/svg"
@@ -55,59 +55,51 @@ const Spinner: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      variant = 'primary',
-      size = 'md',
-      isLoading = false,
-      leftIcon,
-      rightIcon,
-      children,
-      className = '',
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
-    const isDisabled = disabled || isLoading;
+export const Button = ({
+  variant = 'primary',
+  size = 'md',
+  isLoading = false,
+  leftIcon,
+  rightIcon,
+  children,
+  className = '',
+  disabled,
+  ...props
+}: ButtonProps) => {
+  const isDisabled = disabled || isLoading;
 
-    const baseStyles =
-      'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
+  const baseStyles =
+    'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed';
 
-    const combinedClassName = [
-      baseStyles,
-      variantStyles[variant],
-      sizeStyles[size],
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
+  const combinedClassName = [
+    baseStyles,
+    variantStyles[variant],
+    sizeStyles[size],
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
 
-    return (
-      <button
-        ref={ref}
-        className={combinedClassName}
-        disabled={isDisabled}
-        aria-busy={isLoading}
-        {...props}
-      >
-        {isLoading ? (
-          <Spinner className={`${iconSizes[size]} mr-2`} />
-        ) : leftIcon ? (
-          <span className={`${iconSizes[size]} mr-2`}>{leftIcon}</span>
-        ) : null}
+  return (
+    <button
+      className={combinedClassName}
+      disabled={isDisabled}
+      aria-busy={isLoading}
+      {...props}
+    >
+      {isLoading ? (
+        <Spinner className={`${iconSizes[size]} mr-2`} />
+      ) : leftIcon ? (
+        <span className={`${iconSizes[size]} mr-2`}>{leftIcon}</span>
+      ) : null}
 
-        {children}
+      {children}
 
-        {!isLoading && rightIcon && (
-          <span className={`${iconSizes[size]} ml-2`}>{rightIcon}</span>
-        )}
-      </button>
-    );
-  }
-);
-
-Button.displayName = 'Button';
+      {!isLoading && rightIcon && (
+        <span className={`${iconSizes[size]} ml-2`}>{rightIcon}</span>
+      )}
+    </button>
+  );
+};
 
 export default Button;
