@@ -1,6 +1,17 @@
+import { Button } from './ui/Button';
 
+// Simple icon components for demo
+const PlusIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-full h-full">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+);
 
-import React from 'react';
+const ArrowRightIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-full h-full">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+    </svg>
+);
 
 const DesignSandbox = () => {
     return (
@@ -100,17 +111,47 @@ const DesignSandbox = () => {
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-semibold mb-6 text-primary">Component Atoms (Buttons)</h2>
-                    <div className="flex flex-wrap gap-4 p-8 bg-white rounded-lg shadow-soft">
-                        <button className="px-6 py-2 bg-primary text-white rounded-lg shadow-md hover:bg-neutral-900 transition-colors font-medium">
-                            Primary Action
-                        </button>
-                        <button className="px-6 py-2 bg-white border border-neutral-200 text-neutral-700 rounded-lg hover:border-neutral-300 hover:bg-neutral-50 transition-all font-medium">
-                            Secondary Action
-                        </button>
-                        <button className="px-6 py-2 bg-accent text-primary rounded-lg shadow-md hover:bg-accent/80 transition-colors font-bold">
-                            Luxury Accent
-                        </button>
+                    <h2 className="text-2xl font-semibold mb-6 text-primary">Button Component</h2>
+
+                    {/* Variants */}
+                    <div className="mb-8">
+                        <h3 className="text-sm font-medium uppercase tracking-wider text-secondary mb-4">Variants</h3>
+                        <div className="flex flex-wrap gap-4 p-8 bg-white rounded-lg shadow-soft">
+                            <Button variant="primary">Primary</Button>
+                            <Button variant="secondary">Secondary</Button>
+                            <Button variant="ghost">Ghost</Button>
+                            <Button variant="danger">Danger</Button>
+                        </div>
+                    </div>
+
+                    {/* Sizes */}
+                    <div className="mb-8">
+                        <h3 className="text-sm font-medium uppercase tracking-wider text-secondary mb-4">Sizes</h3>
+                        <div className="flex flex-wrap items-center gap-4 p-8 bg-white rounded-lg shadow-soft">
+                            <Button size="sm">Small</Button>
+                            <Button size="md">Medium</Button>
+                            <Button size="lg">Large</Button>
+                        </div>
+                    </div>
+
+                    {/* States */}
+                    <div className="mb-8">
+                        <h3 className="text-sm font-medium uppercase tracking-wider text-secondary mb-4">States</h3>
+                        <div className="flex flex-wrap items-center gap-4 p-8 bg-white rounded-lg shadow-soft">
+                            <Button>Default</Button>
+                            <Button disabled>Disabled</Button>
+                            <Button isLoading>Loading</Button>
+                        </div>
+                    </div>
+
+                    {/* With Icons */}
+                    <div className="mb-8">
+                        <h3 className="text-sm font-medium uppercase tracking-wider text-secondary mb-4">With Icons</h3>
+                        <div className="flex flex-wrap items-center gap-4 p-8 bg-white rounded-lg shadow-soft">
+                            <Button leftIcon={<PlusIcon />}>Add Item</Button>
+                            <Button rightIcon={<ArrowRightIcon />}>Continue</Button>
+                            <Button leftIcon={<PlusIcon />} rightIcon={<ArrowRightIcon />}>Both Icons</Button>
+                        </div>
                     </div>
                 </section>
             </div>
