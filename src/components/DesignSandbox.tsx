@@ -1,5 +1,8 @@
 import { Button } from './ui/Button';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/Card';
+import { Input } from './ui/Input';
+import { Label } from './ui/Label';
+import { Select } from './ui/Select';
 
 // Simple icon components for demo
 const PlusIcon = () => (
@@ -195,6 +198,77 @@ const DesignSandbox = () => {
                                 </CardFooter>
                             </Card>
                         </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="text-2xl font-semibold mb-6 text-primary">Form Inputs</h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Input Component */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Input Component</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <Label htmlFor="default-input">Default Input</Label>
+                                    <Input id="default-input" placeholder="Enter text..." />
+                                </div>
+                                <div>
+                                    <Label htmlFor="currency-input" required>Currency Input</Label>
+                                    <Input id="currency-input" type="number" leftAddon="$" placeholder="0.00" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="error-input">Error State</Label>
+                                    <Input id="error-input" error="This field is required" />
+                                </div>
+                                <div>
+                                    <Label htmlFor="disabled-input">Disabled</Label>
+                                    <Input id="disabled-input" disabled placeholder="Cannot edit" />
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* Select Component */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Select Component</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <Label htmlFor="currency-select">Currency</Label>
+                                    <Select
+                                        id="currency-select"
+                                        placeholder="Select currency..."
+                                        options={[
+                                            { value: 'usd', label: 'US Dollar ($)' },
+                                            { value: 'eur', label: 'Euro (€)' },
+                                            { value: 'gbp', label: 'British Pound (£)' },
+                                        ]}
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="error-select" required>Payment Type</Label>
+                                    <Select
+                                        id="error-select"
+                                        error="Please select a payment type"
+                                        options={[
+                                            { value: 'credit', label: 'Credit' },
+                                            { value: 'debit', label: 'Debit' },
+                                        ]}
+                                    />
+                                </div>
+                                <div>
+                                    <Label htmlFor="disabled-select">Disabled</Label>
+                                    <Select
+                                        id="disabled-select"
+                                        disabled
+                                        options={[{ value: 'locked', label: 'Locked Value' }]}
+                                    />
+                                </div>
+                            </CardContent>
+                        </Card>
                     </div>
                 </section>
             </div>
