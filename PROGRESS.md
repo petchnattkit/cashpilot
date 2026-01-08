@@ -33,7 +33,7 @@
 |-------|-------|--------|-----|--------|
 | [#3](../../issues/3) | Create Button Component | `cp-3-button-component` | [#23](../../pull/23) | ✅ Closed |
 | [#4](../../issues/4) | Create Card Component | `cp-4-card-component` | [#24](../../pull/24) | ✅ Closed |
-| [#5](../../issues/5) | Create Form Input Components | `cp-5-form-inputs` | - | ✅ Closed |
+| [#5](../../issues/5) | Create Form Input Components | `cp-5-form-inputs` | [#25](../../pull/25) | ✅ Closed |
 
 **Summary of completed work:**
 - React + Vite + TypeScript project initialized
@@ -67,8 +67,6 @@
 | Issue | Title | Labels | Priority |
 |-------|-------|--------|----------|
 
-| [#4](../../issues/4) | Create Card Component | `backlog`, `ui`, `component` | High |
-| [#5](../../issues/5) | Create Form Input Components | `backlog`, `ui`, `component` | High |
 | [#6](../../issues/6) | Create Modal Component | `backlog`, `ui`, `component` | Medium |
 | [#14](../../issues/14) | Create Layout & Sidebar Component | `backlog`, `ui` | High |
 | [#15](../../issues/15) | Create Data Table Component | `backlog`, `ui` | High |
@@ -168,11 +166,11 @@ cashpilot/
 
 ```
 Setup & Config     [████████████████████] 100% (3/3)
-UI Components      [██░░░░░░░░░░░░░░░░░░]  12% (1/8)
+UI Components      [████████░░░░░░░░░░░░]  38% (3/8)
 Backend Services   [░░░░░░░░░░░░░░░░░░░░]   0% (0/5)
 Pages              [░░░░░░░░░░░░░░░░░░░░]   0% (0/4)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Overall Progress   [████░░░░░░░░░░░░░░░░]  20% (4/20)
+Overall Progress   [██████░░░░░░░░░░░░░░]  30% (6/20)
 ```
 
 ---
