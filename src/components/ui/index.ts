@@ -12,3 +12,5 @@ export type { LabelProps } from './Label';
 
 export { Select } from './Select';
 export type { SelectProps, SelectOption } from './Select';
+
+export * from './DataTable';
