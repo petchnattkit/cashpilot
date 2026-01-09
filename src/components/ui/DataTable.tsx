@@ -22,6 +22,12 @@ interface DataTableProps<T extends Record<string, unknown>> {
 
 type SortDirection = 'asc' | 'desc' | null
 
+const ALIGNMENT_STYLES = {
+    left: 'text-left',
+    center: 'text-center',
+    right: 'text-right',
+} as const
+
 function DataTable<T extends Record<string, unknown>>({
     data,
     columns,
@@ -118,16 +124,7 @@ function DataTable<T extends Record<string, unknown>>({
         setCurrentPage((prev) => Math.min(totalPages, prev + 1))
     }
 
-    const alignmentClass = (align?: 'left' | 'center' | 'right') => {
-        switch (align) {
-            case 'center':
-                return 'text-center'
-            case 'right':
-                return 'text-right'
-            default:
-                return 'text-left'
-        }
-    }
+
 
     const renderSortIndicator = (key: keyof T) => {
         if (sortKey !== key) {
@@ -167,9 +164,9 @@ function DataTable<T extends Record<string, unknown>>({
                             {columns.map((column) => (
                                 <th
                                     key={String(column.key)}
-                                    className={`px-4 py-3 ${alignmentClass(column.align)} ${column.sortable
-                                            ? 'cursor-pointer hover:bg-neutral-100 select-none'
-                                            : ''
+                                    className={`px-4 py-3 ${ALIGNMENT_STYLES[column.align ?? 'left']} ${column.sortable
+                                        ? 'cursor-pointer hover:bg-neutral-100 select-none'
+                                        : ''
                                         }`}
                                     onClick={() => column.sortable && handleSort(column.key)}
                                     aria-sort={
@@ -216,9 +213,9 @@ function DataTable<T extends Record<string, unknown>>({
                                     {columns.map((column) => (
                                         <td
                                             key={String(column.key)}
-                                            className={`px-4 py-3 text-sm ${alignmentClass(
-                                                column.align
-                                            )}`}
+                                            className={`px-4 py-3 text-sm ${ALIGNMENT_STYLES[
+                                                column.align ?? 'left'
+                                            ]}`}
                                         >
                                             {column.render
                                                 ? column.render(row[column.key], row)
