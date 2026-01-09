@@ -28,6 +28,12 @@ const ALIGNMENT_STYLES = {
     right: 'text-right',
 } as const
 
+const SORT_ICONS = {
+    asc: <ChevronUp className="ml-1 w-4 h-4 inline" />,
+    desc: <ChevronDown className="ml-1 w-4 h-4 inline" />,
+    none: <span className="ml-1 text-neutral-300">↕</span>,
+} as const
+
 function DataTable<T extends Record<string, unknown>>({
     data,
     columns,
@@ -126,15 +132,7 @@ function DataTable<T extends Record<string, unknown>>({
 
 
 
-    const renderSortIndicator = (key: keyof T) => {
-        if (sortKey !== key) {
-            return <span className="ml-1 text-neutral-300">↕</span>
-        }
-        if (sortDirection === 'asc') {
-            return <ChevronUp className="ml-1 w-4 h-4 inline" />
-        }
-        return <ChevronDown className="ml-1 w-4 h-4 inline" />
-    }
+
 
     const isEmpty = paginatedData.length === 0 && !isLoading
 
@@ -178,7 +176,7 @@ function DataTable<T extends Record<string, unknown>>({
                                     }
                                 >
                                     {column.header}
-                                    {column.sortable && renderSortIndicator(column.key)}
+                                    {column.sortable && (sortKey === column.key && sortDirection ? SORT_ICONS[sortDirection] : SORT_ICONS.none)}
                                 </th>
                             ))}
                         </tr>
