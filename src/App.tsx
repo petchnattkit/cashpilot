@@ -6,6 +6,7 @@ import {
   SuppliersPage,
   CustomersPage,
   SettingsPage,
+  NotFoundPage,
 } from './pages'
 import './App.css'
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/suppliers" element={<SuppliersPage />} />
           <Route path="/customers" element={<CustomersPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </MainLayout>
     </BrowserRouter>
