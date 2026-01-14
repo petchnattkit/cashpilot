@@ -3,13 +3,9 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { DashboardPage } from './DashboardPage';
 import { useTransactions } from '../hooks/useTransactions';
-import { useSuppliers } from '../hooks/useSuppliers';
-import { useCustomers } from '../hooks/useCustomers';
 
 // Mock the hooks
 vi.mock('../hooks/useTransactions');
-vi.mock('../hooks/useSuppliers');
-vi.mock('../hooks/useCustomers');
 
 // Mock ResizeObserver for Recharts
 global.ResizeObserver = class ResizeObserver {
@@ -21,10 +17,6 @@ global.ResizeObserver = class ResizeObserver {
 describe('DashboardPage', () => {
   beforeEach(() => {
     vi.resetAllMocks();
-
-    // Default mocks
-    (useSuppliers as Mock).mockReturnValue({ isLoading: false });
-    (useCustomers as Mock).mockReturnValue({ isLoading: false });
   });
 
   it('renders loading state', () => {
