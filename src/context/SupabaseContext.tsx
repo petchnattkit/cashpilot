@@ -31,6 +31,7 @@ export function SupabaseProvider({ children }: { children: ReactNode }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useSupabase() {
   const context = useContext(SupabaseContext);
   if (context === undefined) {

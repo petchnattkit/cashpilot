@@ -19,7 +19,7 @@ describe('SupabaseContext', () => {
   it('provides supabase client', () => {
     const TestComponent = () => {
       const { supabase } = useSupabase();
-      return <div>{!!supabase ? 'Has Client' : 'No Client'}</div>;
+      return <div>{supabase ? 'Has Client' : 'No Client'}</div>;
     };
 
     render(
