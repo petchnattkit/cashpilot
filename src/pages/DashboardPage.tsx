@@ -1,17 +1,11 @@
 import { useMemo } from 'react';
 import { useTransactions } from '../hooks/useTransactions';
-import { useSuppliers } from '../hooks/useSuppliers';
-import { useCustomers } from '../hooks/useCustomers';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { LineChart } from '../components/ui/Chart';
 import { Wallet, TrendingUp, TrendingDown, Activity } from 'lucide-react';
 
 function DashboardPage() {
-  const { data: transactions, isLoading: isLoadingTransactions } = useTransactions();
-  const { isLoading: isLoadingSuppliers } = useSuppliers();
-  const { isLoading: isLoadingCustomers } = useCustomers();
-
-  const isLoading = isLoadingTransactions || isLoadingSuppliers || isLoadingCustomers;
+  const { data: transactions, isLoading } = useTransactions();
 
   const { netLiquidity, runway, totalInflow, totalOutflow, chartData } = useMemo(() => {
     if (!transactions) {
