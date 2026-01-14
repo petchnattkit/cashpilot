@@ -1,28 +1,16 @@
 import { supabase } from '../lib/supabase';
 import type { Database } from '../types/database';
+import { calculateSupplierRiskScore } from './scoringService';
 
 export type Supplier = Database['public']['Tables']['suppliers']['Row'];
 export type SupplierInsert = Database['public']['Tables']['suppliers']['Insert'];
 export type SupplierUpdate = Database['public']['Tables']['suppliers']['Update'];
 
-export const calculateRiskScore = (dpo: number): number => {
-  if (dpo < 15) {
-    // High Risk: 70-100
-    // dpo=0 -> 100, dpo=14 -> 72
-    return Math.max(70, 100 - dpo * 2);
-  } else if (dpo <= 30) {
-    // Medium Risk: 40-69
-    // dpo=15 -> 69, dpo=30 -> 40
-    // Linear interpolation: y = 69 + (x - 15) * ((40 - 69) / (30 - 15))
-    // y = 69 + (x - 15) * (-29 / 15)
-    return Math.round(69 + (dpo - 15) * (-29 / 15));
-  } else {
-    // Low Risk: 0-39
-    // dpo=31 -> 38, dpo=50 -> 0
-    // Continue with 100 - 2*dpo logic as it fits well for >30
-    return Math.max(0, 100 - dpo * 2);
-  }
-};
+/**
+ * @deprecated Use calculateSupplierScore from scoringService instead
+ * Kept for backward compatibility with existing tests
+ */
+export const calculateRiskScore = calculateSupplierRiskScore;
 
 export const supplierService = {
   getAll: async () => {
@@ -44,7 +32,7 @@ export const supplierService = {
 
   create: async (supplier: SupplierInsert) => {
     const dpo = supplier.dpo ?? 0;
-    const risk_score = calculateRiskScore(dpo);
+    const risk_score = calculateSupplierRiskScore(dpo);
 
     const { data, error } = await supabase
       .from('suppliers')
@@ -60,7 +48,7 @@ export const supplierService = {
     const updates = { ...supplier };
 
     if (updates.dpo !== undefined && updates.dpo !== null) {
-      updates.risk_score = calculateRiskScore(updates.dpo);
+      updates.risk_score = calculateSupplierRiskScore(updates.dpo);
     }
 
     const { data, error } = await supabase

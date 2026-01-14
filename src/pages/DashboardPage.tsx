@@ -4,6 +4,14 @@ import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card'
 import { LineChart } from '../components/ui/Chart';
 import { Wallet, TrendingUp, TrendingDown, Activity } from 'lucide-react';
 import { SeedDataButton } from '../components/dev/SeedDataButton';
+import {
+  calculateCashflowMetrics,
+  generateCashflowChartData,
+  calculateRunway,
+} from '../services/scoringService';
+
+// Mocked fixed monthly expenses for runway calculation
+const FIXED_MONTHLY_EXPENSES = 5000;
 
 function DashboardPage() {
   const { data: transactions, isLoading } = useTransactions();
@@ -19,61 +27,17 @@ function DashboardPage() {
       };
     }
 
-    let totalIn = 0;
-    let totalOut = 0;
-    const events: { date: string; amount: number }[] = [];
-
-    transactions.forEach((t) => {
-      const cashIn = t.cash_in || 0;
-      const cashOut = t.cash_out || 0;
-
-      totalIn += cashIn;
-      totalOut += cashOut;
-
-      if (t.date_in && cashIn > 0) {
-        events.push({ date: t.date_in, amount: cashIn });
-      }
-      if (t.date_out && cashOut > 0) {
-        events.push({ date: t.date_out, amount: -cashOut });
-      }
-    });
-
-    const net = totalIn - totalOut;
-    const fixedExpenses = 5000; // Mocked fixed expenses
-    const run = fixedExpenses > 0 ? net / fixedExpenses : 0;
-
-    // Process chart data
-    events.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-
-    let runningBalance = 0;
-
-    // First aggregate amounts per day
-    const dailyChanges = new Map<string, number>();
-    events.forEach((e) => {
-      const current = dailyChanges.get(e.date) || 0;
-      dailyChanges.set(e.date, current + e.amount);
-    });
-
-    // Sort dates
-    const sortedDates = Array.from(dailyChanges.keys()).sort(
-      (a, b) => new Date(a).getTime() - new Date(b).getTime()
-    );
-
-    const data = sortedDates.map((date) => {
-      const change = dailyChanges.get(date) || 0;
-      runningBalance += change;
-      return {
-        date,
-        balance: runningBalance,
-      };
-    });
+    // Use scoringService for calculations
+    const metrics = calculateCashflowMetrics(transactions);
+    const runwayMetrics = calculateRunway(metrics.netCashFlow, FIXED_MONTHLY_EXPENSES);
+    const chartPoints = generateCashflowChartData(transactions);
 
     return {
-      netLiquidity: net,
-      runway: run,
-      totalInflow: totalIn,
-      totalOutflow: totalOut,
-      chartData: data,
+      netLiquidity: metrics.netCashFlow,
+      runway: runwayMetrics.months,
+      totalInflow: metrics.totalCashIn,
+      totalOutflow: metrics.totalCashOut,
+      chartData: chartPoints,
     };
   }, [transactions]);
 
