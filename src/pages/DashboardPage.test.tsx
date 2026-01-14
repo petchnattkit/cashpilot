@@ -4,6 +4,13 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { DashboardPage } from './DashboardPage';
 import { useTransactions } from '../hooks/useTransactions';
 
+// Mock useQueryClient for SeedDataButton
+vi.mock('@tanstack/react-query', () => ({
+  useQueryClient: vi.fn(() => ({
+    invalidateQueries: vi.fn(),
+  })),
+}));
+
 // Mock the hooks
 vi.mock('../hooks/useTransactions');
 

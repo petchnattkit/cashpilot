@@ -3,6 +3,7 @@ import { useTransactions } from '../hooks/useTransactions';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { LineChart } from '../components/ui/Chart';
 import { Wallet, TrendingUp, TrendingDown, Activity } from 'lucide-react';
+import { SeedDataButton } from '../components/dev/SeedDataButton';
 
 function DashboardPage() {
   const { data: transactions, isLoading } = useTransactions();
@@ -107,18 +108,22 @@ function DashboardPage() {
           <Activity className="w-8 h-8 text-neutral-400" />
         </div>
         <h2 className="text-xl font-semibold text-neutral-900 mb-2">No transactions yet</h2>
-        <p className="text-neutral-500 max-w-sm">
+        <p className="text-neutral-500 max-w-sm mb-6">
           Start adding transactions to see your financial overview and cashflow projection.
         </p>
+        <SeedDataButton />
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
-        <p className="text-neutral-500 mt-1">Financial overview and cashflow projection.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
+          <p className="text-neutral-500 mt-1">Financial overview and cashflow projection.</p>
+        </div>
+        <SeedDataButton />
       </div>
 
       {/* KPI Cards */}
