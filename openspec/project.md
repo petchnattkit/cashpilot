@@ -33,7 +33,6 @@
     -   Prefer Composition over Inheritance.
     -   Use Derived State (avoid `useEffect` for state sync).
     -   Keep Effects minimal.
--   **Supabase Security**: RLS policies must be defined for every table (even if disabled for MVP).
 
 ### Testing Strategy
 -   **Unit/Component Tests**: Run with `npm test`.
