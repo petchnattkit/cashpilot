@@ -1,3 +1,4 @@
+export { InventoryPage } from './InventoryPage'
 export { DashboardPage } from './DashboardPage'
 export { TransactionsPage } from './TransactionsPage'
 export { SuppliersPage } from './SuppliersPage'

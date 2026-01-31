@@ -22,13 +22,35 @@ export interface Customer {
   updated_at: string;
 }
 
+export interface Sku {
+  id: string;
+  code: string;
+  name: string;
+  description: string | null;
+  image_url: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export type CategoryType = 'in' | 'out' | 'both';
+
+export interface Category {
+  id: string;
+  name: string;
+  type: CategoryType;
+  created_at: string;
+  updated_at: string;
+}
+
 export type TransactionStatus = 'pending' | 'completed' | 'cancelled';
 
 export interface Transaction {
   id: string;
   sku: string | null;
+  sku_id: string | null;
   label: string;
   category: string | null;
+  category_id: string | null;
   date_in: string | null;
   cash_out: number | null;
   date_out: string | null;
@@ -52,6 +74,16 @@ export interface Database {
         Row: Customer;
         Insert: Omit<Customer, 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Omit<Customer, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      skus: {
+        Row: Sku;
+        Insert: Omit<Sku, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<Sku, 'id' | 'created_at' | 'updated_at'>>;
+      };
+      categories: {
+        Row: Category;
+        Insert: Omit<Category, 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Omit<Category, 'id' | 'created_at' | 'updated_at'>>;
       };
       transactions: {
         Row: Transaction;

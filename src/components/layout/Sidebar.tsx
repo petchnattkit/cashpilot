@@ -1,4 +1,4 @@
-import { BarChart3, FileText, Truck, User, Settings, Menu, X } from 'lucide-react'
+import { BarChart3, FileText, Truck, User, Settings, Menu, X, Package } from 'lucide-react'
 import { NavLink } from './NavLink'
 
 interface SidebarProps {
@@ -11,6 +11,7 @@ interface SidebarProps {
 const navItems = [
     { to: '/', icon: BarChart3, label: 'Dashboard' },
     { to: '/transactions', icon: FileText, label: 'Transactions' },
+    { to: '/inventory', icon: Package, label: 'Inventory' },
     { to: '/suppliers', icon: Truck, label: 'Suppliers' },
     { to: '/customers', icon: User, label: 'Customers' },
     { to: '/settings', icon: Settings, label: 'Settings' },

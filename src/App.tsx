@@ -3,6 +3,7 @@ import { MainLayout } from './components/layout';
 import {
   DashboardPage,
   TransactionsPage,
+  InventoryPage,
   SuppliersPage,
   CustomersPage,
   SettingsPage,
@@ -21,6 +22,7 @@ function App() {
             <Routes>
               <Route path="/" element={<DashboardPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/inventory" element={<InventoryPage />} />
               <Route path="/transactions" element={<TransactionsPage />} />
               <Route path="/suppliers" element={<SuppliersPage />} />
               <Route path="/customers" element={<CustomersPage />} />

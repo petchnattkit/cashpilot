@@ -10,11 +10,21 @@ import {
   calculateRunway,
 } from '../services/scoringService';
 
-// Mocked fixed monthly expenses for runway calculation
-const FIXED_MONTHLY_EXPENSES = 5000;
+// Default if not set
+const DEFAULT_EXPENSES = 5000;
+
+import { EntityWidgets } from '../components/dashboard/EntityWidgets';
+import { useDashboardInsights } from '../hooks/useDashboardInsights';
 
 function DashboardPage() {
   const { data: transactions, isLoading } = useTransactions();
+  const insights = useDashboardInsights();
+
+  // Get baseline from settings
+  const baselineValue = useMemo(() => {
+    const saved = localStorage.getItem('cashpilot_baseline');
+    return saved ? Number(saved) : DEFAULT_EXPENSES;
+  }, []);
 
   const { netLiquidity, runway, totalInflow, totalOutflow, chartData } = useMemo(() => {
     if (!transactions) {
@@ -29,7 +39,7 @@ function DashboardPage() {
 
     // Use scoringService for calculations
     const metrics = calculateCashflowMetrics(transactions);
-    const runwayMetrics = calculateRunway(metrics.netCashFlow, FIXED_MONTHLY_EXPENSES);
+    const runwayMetrics = calculateRunway(metrics.netCashFlow, baselineValue);
     const chartPoints = generateCashflowChartData(transactions);
 
     return {
@@ -39,7 +49,7 @@ function DashboardPage() {
       totalOutflow: metrics.totalCashOut,
       chartData: chartPoints,
     };
-  }, [transactions]);
+  }, [transactions, baselineValue]);
 
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -81,7 +91,7 @@ function DashboardPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 pb-10">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-neutral-900">Dashboard</h1>
@@ -110,7 +120,7 @@ function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatNumber(runway)} Months</div>
-            <p className="text-xs text-neutral-500 mt-1">Based on fixed expenses</p>
+            <p className="text-xs text-neutral-500 mt-1">Based on baseline setting</p>
           </CardContent>
         </Card>
 
@@ -153,6 +163,9 @@ function DashboardPage() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Insights Section */}
+      <EntityWidgets insights={insights} />
     </div>
   );
 }
