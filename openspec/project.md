@@ -25,6 +25,16 @@
 -   **Services Layer**: Business logic (CRUD, scoring) resides in `src/services`, separate from UI components.
 -   **Custom Hooks**: Encapsulate data fetching and state logic (e.g., `useTransactions`).
 
+### Engineering Standards
+-   **Domain-Driven Design (DDD)**: Group code by features/domain (e.g., `transactions/`, `inventory/`) rather than technical type.
+-   **SOLID Principles**: Strictly adhere to modularity. Single Responsibility ensures maintainability.
+-   **Official Docs First**: Always consult official documentation (TanStack Query, Supabase, React) before implementing custom workarounds.
+-   **React Best Patterns**: 
+    -   Prefer Composition over Inheritance.
+    -   Use Derived State (avoid `useEffect` for state sync).
+    -   Keep Effects minimal.
+-   **Supabase Security**: RLS policies must be defined for every table (even if disabled for MVP).
+
 ### Testing Strategy
 -   **Unit/Component Tests**: Run with `npm test`.
 -   **Coverage**: Maintain at least 60% code coverage.
