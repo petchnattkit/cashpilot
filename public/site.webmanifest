@@ -1,0 +1,27 @@
+{
+  "name": "CashPilot - AI-Powered Cashflow Dashboard",
+  "short_name": "CashPilot",
+  "description": "Take control of your business finances with AI-powered cashflow forecasting and smart financial management for SMEs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F2042",
+  "theme_color": "#0F2042",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

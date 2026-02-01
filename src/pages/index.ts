@@ -1,0 +1,7 @@
+export { DashboardPage } from './dashboard'
+export { TransactionsPage } from './transactions'
+export { SuppliersPage } from './suppliers'
+export { CustomersPage } from './customers'
+export { InventoryPage } from './inventory'
+export { SettingsPage } from './settings'
+export { NotFoundPage } from './not-found'
